@@ -20,6 +20,7 @@ class Integer{
         void operator()();
         friend std::ostream& operator<<(std::ostream& output, const Integer& obj);
         friend class print;
+        explicit operator int();
 };
 
 class print

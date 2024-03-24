@@ -78,6 +78,34 @@ void print(std::shared_ptr<Integer> ptr)
 {
     (*ptr)();
 }
+void pprint(Integer x)
+{
+
+}
+
+class Product{
+    private:
+        Integer Id;
+    public:
+        Product(const Integer& a)
+        {
+            std::cout<<"Product(const Integer &)"<<std::endl;
+            Id = a;
+        }
+        ~Product()
+        {
+            std::cout<<"~"<<std::endl;
+        }
+        const Integer& GetInteger() const
+        {
+            return Id;
+        }
+        explicit operator Integer()
+        {
+            return Id;
+        }
+
+};
 int main()
 {
 //     int x;
@@ -115,12 +143,28 @@ int main()
     // std::cin>>n3;
     // std::cout<<n3<<std::endl;
     // n3();
-    std::shared_ptr<Integer> ptr(new Integer);
+    // std::shared_ptr<Integer> ptr(new Integer);
     //Intptr ptr = new Integer();
-    ptr->SetValue(3);
-    (*ptr).SetValue(8);
-    print((ptr));
-    (*ptr)();
-    ptr->GetValue();
+    // ptr->SetValue(3);
+    // (*ptr).SetValue(8);
+    // print((ptr));
+    // (*ptr)();
+    // ptr->GetValue();
+
+    // Integer a1 = 4;
+    // Integer a2 {2};
+    // a2 = 9;
+    // pprint(3);
+
+    // int x = static_cast<int>(a2);
+    // Product p{2};
+    // Integer a3 = static_cast<Integer>(p);
+
+    // if(a3 == static_cast<Integer>(p))
+    // {
+    //     std::cout<<"Casting is ok"<<std::endl;
+    // }
+    Product p1{2};
+
     return 0;
 }
