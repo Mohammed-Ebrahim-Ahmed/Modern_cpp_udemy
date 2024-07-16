@@ -4,18 +4,18 @@
 		{
 			"type": "cppbuild",
 			"label": "C/C++: g++.exe build active file",
-			"command": "C:/mingw64/bin/g++.exe",
+			"command": "/usr/bin/g++",
 			"args": [
 				"-fdiagnostics-color=always",
 				"-g",
-				"${fileDirname}\\*.cpp",
+				"${fileDirname}/*.cpp",
 				"-Wall",
 				"-std=c++20",
 				"-o",
-				"${fileDirname}\\${fileBasenameNoExtension}.exe"
+				"${fileDirname}/${fileBasenameNoExtension}.exe"
 			],
 			"options": {
-				"cwd": "C:/mingw64/bin"
+				"cwd": "/usr/bin"
 			},
 			"problemMatcher": [
 				"$gcc"
@@ -24,7 +24,7 @@
 				"kind": "build",
 				"isDefault": true
 			},
-			"detail": "compiler: C:/mingw64/bin/g++.exe"
+			"detail": "compiler: /usr/bin/g++"
 		},
 		{
 			"type": "cppbuild",
@@ -34,7 +34,7 @@
 				"/Zi",
 				"/EHsc",
 				"/nologo",
-				"/Fe${fileDirname}\\${fileBasenameNoExtension}.exe",
+				"/Fe${fileDirname}/${fileBasenameNoExtension}.exe",
 				"${file}"
 			],
 			"options": {
