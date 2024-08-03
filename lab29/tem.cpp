@@ -1,57 +1,5 @@
-#include <iostream>
+#include "tem.hpp"
 
-template<typename T>
-T Add(T x,T y) 
-{
-    return x+y;
-} 
-template<typename T>
-T ArraySum(const T *pArr, size_t arrSize){\
-    int i = 0;
-    T sum = 0;
-    for(i = 0; i <arrSize; i++)
-    {
-        sum = pArr[i];
-    }
-    return sum;
-}
-template<typename T>
-T Max(const T *pArr, size_t arrSize)
-{
-    int i = 0;
-    T max = pArr[i];
-
-    for(i = 0; i < arrSize; i++)
-    {
-        if(pArr[i] > max)
-        {
-            max = pArr[i];
-        }
-    }
-    return max;
-}
-template<typename T>
-std::pair<T,T> MinMax(const T *pArr, size_t arrSize)
-{
-    std::pair<T,T> pair{};
-    int i = 0;
-    T max  = pArr[i];
-    T min = pArr[i];
-
-    for(i = 0 ; i < arrSize; i++)
-    {
-        if(pArr[i] > max)
-        {
-            max = pArr[i];
-        }
-        if(pArr[i] < min)
-        {
-            min = pArr[i];
-        }
-    }
-    pair = {min, max};
-    return pair;
-}
 
 int main()
 {
@@ -60,17 +8,30 @@ int main()
     float y = Add(2.2, 3.2);
     std::cout<<x<<" "<<y<<std::endl;
     int z[3] = {1,2,3};
-    int sum = ArraySum(z, 3);
+    int (&rz)[3] = z;
+    int sum = ArraySum(rz);
     std::cout<<"int sum = "<< sum<<std::endl;
     float f[3] = {1.2f, 3.9f, 9.2f};
-    float fsum = ArraySum(f, 3);
+    float (&rf)[3] = f;
+    float fsum = ArraySum(rf);
     std::cout<<"float sum = "<< fsum <<std::endl;
-    std::cout<<Max(z, 3)<<std::endl;
-    std::cout<<Max(f, 3)<<std::endl;
-    std::pair<int, int> pair = MinMax(z, 3);
+    std::cout<<Max(rz)<<std::endl;
+    std::cout<<Max(rf)<<std::endl;
+    std::pair<int, int> pair = MinMax(rz);
     std::cout<<pair.first <<" "<< pair.second<< std::endl;
-    std::pair<float, float> fpair= MinMax(f, 3);
+    std::pair<float, float> fpair= MinMax(rf);
     std::cout<<fpair.first <<" "<< fpair.second<< std::endl;
-
+    const char * a = "a";
+    const char * b = "b";
+    std::cout<<Maximum(a,b)<<std::endl;
+    int brr[4] = {9,2,9,3};
+    int (& rbrr)[4] = brr;
+    std::cout<<min(brr)<<std::endl;
+    const char * names [3] = {"mohammed", "Ebrahim", "ahmed"};
+    const char * (&rnames)[3] = names;
+    std::cout<<ArraySum(rnames)<<std::endl;
+    std::string mynames [3] = {"mohammed", "Ebrahim", "hassanin"};
+    std::string (&rmynames)[3] = mynames;
+    std::cout<<ArraySum(rmynames)<<std::endl;
     return 0;
 }
