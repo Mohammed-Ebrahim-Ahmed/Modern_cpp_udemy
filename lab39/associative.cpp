@@ -3,7 +3,10 @@
 #include <map>
 #include <unordered_set>
 #include <unordered_map>
-
+#include <algorithm>
+#include <vector>
+#include <fstream>
+#include <filesystem>
 
 void Set()
 {
@@ -193,12 +196,152 @@ void Unmap()
     }
 
 }
+
+class Employee{
+    public:
+        // Employee()
+        // {
+        //     id =0;
+        //     name = "";
+        //     lan = "";
+        // }
+        Employee(std::string && name, int && id, std::string && lan) : name{name}, id{id}, lan{lan}
+        {
+
+        }
+        const std::string& getName() const
+        {
+            return name;
+        }
+        int getId() const
+        {
+            return id;
+        }
+        const std::string& getLanguage() const
+        {
+            return lan;
+        }
+        bool operator< ( const Employee& e2)
+        {
+            return this->getId() > e2.getId(); 
+        }
+    private:
+        std::string name;
+        int id;
+        std::string lan;
+};
+
+class EmployeeHasher{
+    public:
+        size_t operator() (const Employee& e1) const
+        {
+            size_t seed = 0;
+
+            auto h1 = std::hash<std::string>{}(e1.getName());
+            auto h2 = std::hash<int>{}(e1.getId());
+            return h1^h2;
+        }
+};
+
+class EmployeeEquality{
+    public:
+        bool operator()(const Employee& e1, const Employee& e2) const
+        {
+            return (e1.getId() == e2.getId()) && (e1.getName() == e2.getName());
+        }
+};
+
+struct EmployeeCompare{
+    bool operator()(const Employee & e1) const
+    {
+        return e1.getLanguage() == "c++";
+    }
+};
 int main()
 {
+    // std::unordered_map<Employee, std::string, EmployeeHasher, EmployeeEquality> mp;
+    
+   std::vector<Employee> vec {
+        Employee{"mohammed", 22, "c++"},
+        Employee{"hala", 30, "c++"},
+        Employee {"fares", 33, "Java"}
+   };
 
+
+    std::sort(vec.begin(), vec.end(), [](const Employee & e1, const Employee & e2){
+        return e2.getId() < e1.getId();
+    });
+
+   for(auto const & x : vec)
+   {
+        std::cout<<x.getName() << " " << x.getId() << " "<< x.getLanguage() << std::endl;
+   }
+   auto count = std::count_if(vec.begin(), vec.end(), EmployeeCompare());
+    std::cout << count << std::endl;
+
+    auto it = std::find_if(vec.begin(), vec.end(), [](const Employee & e1){
+        return e1.getLanguage() == "Java";
+    });
+
+    if(it != vec.end())
+    {
+        std::cout << "Java programmer found" << it->getId() << " "<<it->getName() << std::endl;
+    }
+    std::vector<int> vec2{20,39,11,99,33};
+    std::erase(vec2,20);
+
+    std::map <std::string,int> mp{
+        {"ma", 20},
+        {"ha", 60},
+        {"eb", 99}
+    };
+    auto node = mp.extract("ma");
+    // node.key()[0] = 'M';
+    node.key()[0] = 'M';
+    mp.insert(std::move(node));
+    for(auto ele : mp)
+    {
+        std:: cout << ele.first << " " << ele.second << std::endl;
+    }
+    // auto find = mp.find("ma");
+    // std::string name = find->first;
+    // name[0] = 'M';
+    // mp.erase(find);
+    // mp[name]= 90;
+    // std::set<int> s1{1,2,3,4,5};
+    // bool what = mp.contains("ma");
+    // if(what)
+    // {
+    //     std::cout << "element found" << std::endl;
+    // }
+    // mp[Employee{"mohammed", 22, "c++"}] = "first";
+    // mp[Employee{"hala", 30, "c++"}] = "second"; 
+    // mp[Employee {"fares", 33, "Java"}] = "third";
+
+    // std::sort(mp.begin(), mp.end(), [](const Employee & e1, const Employee & e2){
+    //     return e1.getId() > e2.getId();
+    // });
+    // for(auto const & f: mp)
+    // {
+    //     std::cout << "bucket #" << mp.bucket(f.first) << f.first.getId() << " " << f.first.getName() << " " << f.first.getLanguage() << " " << f.second << std::endl;
+    // }
     // Set();
     // Map();
     // Unset();
-    Unmap();
+    // Unmap();
+    // std::ifstream input{"associative.cpp"};
+
+    // if(!input)
+    // {
+    //     std::cout << "file does not exist" << std::endl;
+    //     return -1;
+    // }
+    // auto size = std::filesystem::file_size("associative.cpp");
+    // std::vector<char> words;
+    // words.resize(size);
+    // char word[2000];
+    // input.read(words.data(), size);
+
+    // std::cout << words.data() << std::endl;
     return 0;
 }
