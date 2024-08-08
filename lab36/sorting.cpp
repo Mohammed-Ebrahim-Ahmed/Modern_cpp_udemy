@@ -66,15 +66,21 @@ class Product {
 
         }
 
-        int getNetIncome()
+        auto getNetIncome()
         {
             int tax[] = {5, 10, 20};
             int max = tax[0];
-            arrayTrans(tax, [max, this](int x)mutable{
-                max = std::max(x, max);
-                base_price -=x;
-            });
-            return base_price;
+            auto final_price = 0;
+            // return arrayTrans(tax, [max, this](int x)mutable -> int{ 
+            //     max = std::max(x, max);
+            //     base_price -=x;
+            //     return base_price;
+            // });
+            return [*this, max, final_price](int num)mutable{
+                final_price = base_price + max + num;
+                return final_price;
+            };
+
         }
     private:
         int base_price;
@@ -153,7 +159,12 @@ int main()
     std::cout << greatest(arr, (sizeof(arr) / sizeof(arr[0])));
 
     Product pro(20, "Washing machine");
-    std::cout<<pro.getNetIncome();
+    auto pp = new Product(39, "oven");
+    auto fun = pp->getNetIncome();
+    std::cout << "****************" << std::endl;
+    delete pp ;
+    std::cout << fun(29) << std::endl;
+    // std::cout<<pro.getNetIncome();
 
     std::ofstream out{"file.txt"};
     //int x{2};
@@ -169,5 +180,11 @@ int main()
     std::list<int> v1 {1, 99, 2, 93, 100, 33};
     auto par = MinMax<int>(v1.begin(), v1.end());
     std::cout<< par.first << " " << par.second <<std::endl;
+
+    constexpr auto nn = [](int x, int y){
+        return x+y;
+    };
+
+    std::cout << nn(2,8) << std::endl;
     return 0;
 }
