@@ -67,7 +67,8 @@
         "mutex": "cpp",
         "span": "cpp",
         "variant": "cpp",
-        "source_location": "cpp"
+        "source_location": "cpp",
+        "any": "cpp"
     },
     "editor.formatOnSave": true
 }

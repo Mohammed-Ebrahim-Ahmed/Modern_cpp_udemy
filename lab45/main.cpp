@@ -5,7 +5,7 @@
 #include <mutex>
 #include <future>
 
-#define deleted_copy_move_cons
+// #define deleted_copy_move_cons
 class Number{   
 
     public:
@@ -18,14 +18,18 @@ class Number{
         Number(Number&&) = delete;
         #endif
         #ifndef deleted_copy_move_cons
-        Number(const Number & num)
+        Number(const Number & num): x{num.x}
         {
             std::cout << "Copy constructor" << std::endl;
         }
 
-        Number(Number && num)
+        Number(Number && num):x{num.x}
         {
             std::cout << "move constructor is called" << std::endl;
+            num.x = 0;
+        }
+        int getValue()const{
+            return x;
         }
         #endif
     private:
@@ -73,6 +77,14 @@ int sum2(Args... args)
 }
 Data(const char *) -> Data<std::string> ;
 Data(int) -> Data<long> ;
+
+// Number&& createAndReturnNumber(int num) {
+//     return Number{num};  // Attempting to return an rvalue reference to a temporary object
+// }
+void addNumber(std::vector<Number>& numbers, Number&& num) {
+    numbers.push_back(std::move(num)); // Explicitly move `num` into the vector
+}
+
 int main()
 {
     Number num = 3;
@@ -88,5 +100,14 @@ int main()
     Data d3{"file"};
     std::cout << sum(1,2,3,4,5);
     std::cout << sum2(1,2,3,4,5);
+    // auto nnn = createAndReturnNumber();
+    std::vector<Number> vv{Number{2}, Number{9}};
+    Number mynum = 9;
+    addNumber(vv, std::move(mynum));
+
+    for(auto & x: vv)
+    {
+        std::cout << x.getValue() << std::endl;
+    }
     return 0;
 }
