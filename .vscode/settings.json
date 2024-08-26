@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "files.associations": {
     "iostream": "cpp",
     "ostream": "cpp",
@@ -71,3 +72,5 @@
     "variant": "cpp"
   }
 }
+
+>>>>>>> e102a4f8955c289a3c7fa89304dbb2f674d8dbb7
