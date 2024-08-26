@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <memory>
-#include "../lab4/Integer.hpp"
+#include "Integer.hpp"
 
 Integer* GetPointer (int value)
 {

@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 
+#include <algorithm>
 
 int main()
 {
@@ -9,7 +10,7 @@ int main()
     {
         a[i] = i * 10;
     }
-    std::vector<int> data = {1,2,3};
+    std::vector<int> data = {1,8,3};
     for(auto i = 0; i < 3; i++)
     {
         data.push_back(i*2);
@@ -41,7 +42,10 @@ int main()
     //insert
 
     it = data.begin()+1;
+    auto itt = std::find(data.begin(), data.end(), 8);
+    std::cout << (it - data.begin()) << std::endl;
     data.insert(it, 500);
+    data.insert(it, {29,22});
     for(auto item : data)
     {
         std::cout<<item<<" ";

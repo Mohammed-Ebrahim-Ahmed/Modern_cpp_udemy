@@ -63,6 +63,17 @@ int main()
     // bag.add(3);
     // bag.add(5);
     Print({1,3,9});
+
+    std::initializer_list<std::string> mydata{"first", "second", "third"};
+
+    std::initializer_list<std::string>::iterator it = mydata.begin();
+
+    while(it != mydata.end())
+    {
+        std::cout << *it++ << std::endl;
+    }
+
+
     return 0;
 
 }

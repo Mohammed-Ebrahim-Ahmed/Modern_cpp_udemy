@@ -30,10 +30,14 @@ Distance operator "" _m (long double value)
     return Distance{value / 1000};
 }
 
+Distance operator "" _cm(long double value)
+{
+    return Distance{value/(1000*1000)};
+}
 int main()
 {
     Distance dis_1{ 20.0_mi};
     Distance dis_2{ 2222.2_m};
-
+    Distance dis_3{ 300000.2_cm};
     std::cout<<dis_1.getDistance() << " "<< dis_2.getDistance()<<std::endl;
 }

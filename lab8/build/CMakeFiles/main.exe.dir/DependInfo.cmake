@@ -8,11 +8,11 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "E:/ES_ITI/C++/udemy/lab8/projectandEmployee.cpp" "CMakeFiles/main.exe.dir/projectandEmployee.cpp.obj" "gcc" "CMakeFiles/main.exe.dir/projectandEmployee.cpp.obj.d"
+  "/home/mohammed/Modern_cpp_udemy/lab8/projectandEmployee.cpp" "CMakeFiles/main.exe.dir/projectandEmployee.cpp.o" "gcc" "CMakeFiles/main.exe.dir/projectandEmployee.cpp.o.d"
   )
 
-# Targets to which this target links which contain Fortran sources.
-set(CMAKE_Fortran_TARGET_LINKED_INFO_FILES
+# Targets to which this target links.
+set(CMAKE_TARGET_LINKED_INFO_FILES
   )
 
 # Fortran module output directory.

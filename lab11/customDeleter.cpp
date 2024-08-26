@@ -39,11 +39,19 @@ void Dynamic_array(void)
     std::shared_ptr<int[]> x {new int[5]{1,2,3,4,5}};
     x[2] = 3;
 }
+
+class customDel{
+    public:
+    void operator()(int* p) const{
+        delete[] p;
+    }
+};
 int main()
 {
     Unique_delete();
     Shared_delete();
-
+    std::unique_ptr<int, customDel> p{new int[2]{1,2}, customDel{}};
+    std::shared_ptr<int>pp{new int[3]{1,2,3}, customDel{}};
     // auto a = std::make_unique<int>(2);
     // auto b = std::make_unique<Point>(2,3);
     // auto f = std::make_shared<int[]>(2);

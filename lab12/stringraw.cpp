@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cstring>
 #include <string>
-
+#include <algorithm>
 // char * Combine (const char* pFirst, const char* pLast)
 // {
 //     char * fullname = new char [strlen(pFirst)+strlen(pLast)+1];
@@ -15,21 +15,20 @@ std::string combine(const std::string& first, const std::string& second)
     std::string fullname = first + second;
     return fullname;
 }
-std::string ToUpper(const std::string& str)
-{
-    return strupr((char*)(str.c_str()));
-}
-std::string ToLower(const std::string& str)
-{
-    return strlwr((char*)(str.c_str()));
-}
+// std::string ToUpper(const std::string& str)
+// {
+//     return strupr((char*)(str.c_str()));
+// }
+// std::string ToLower(const std::string& str)
+// {
+//     return strlwr((char*)(str.c_str()));
+// }
 int main()
 {
     // char first[10];
     // char last[10];
     // std::cin.getline(first, 10);
     // std::cin.getline(last, 10);
-
     // const char * fullname = Combine(first, last);
 
     // // delete[] fullname;
@@ -43,15 +42,20 @@ int main()
     // std::cout<<s.length()<<std::endl;
 
     std::string first ,last;
-
+    first = "maoh";
+    std::transform(first.begin(), first.end(),first.begin(), [](auto c){
+        return std::toupper(c);
+    });
+    std::cout << first << std::endl;
     std::getline(std::cin, first);
     std::getline(std::cin, last);
 
     std::string fullname = combine(first, last);
     std::cout<<fullname<<std::endl;
+    std::cout << fullname.c_str() << std::endl;
     printf("%s\n",first.c_str());
-    std::cout<<ToLower(first)<<std::endl;
-    std::cout<<ToUpper(last)<<std::endl;
+    // std::cout<<ToLower(first)<<std::endl;
+    // std::cout<<ToUpper(last)<<std::endl;
     // std::string first;
     // std::string last;
     // std::getline(std::cin,first);
@@ -60,27 +64,26 @@ int main()
 
     // std::string fullname = Combine(first, last);
     // std::cout<<fullname<<std::endl;
-    // std::string s1{"hello"}, s2 {"world"};
-    // s = s1+s2;
-    // s+= s1;
-    // s.insert(6, "world");
+    std::string s;
+    std::string s1{"hello"}, s2 {"world"};
+    s = s1+s2;
+    s+= s1;
+    s.insert(6, "world");
 
-    // if(s1 != s2)
-    // {
+    if(s1 != s2)
+    {
 
-    // }
+    }
 
-    // // s.erase();
-    // // s.erase(0,5);
+    // s.erase();
+    // s.erase(0,5);
     // // s.clear();
-
-    // auto pos = s.find("world", 4);
-    // if(pos != std::string::npos)
-    // {
-    //     std::cout<<"String is found";
-    // }
-
-
+    
+    auto pos = s.find("world",4);
+    if(pos != std::string::npos)
+    {
+        std::cout<<"String is found";
+    }
 }
 
 // void UsingStdString()

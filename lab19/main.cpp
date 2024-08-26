@@ -24,12 +24,13 @@ int main()
     }
    
     
-    // int x = 0;
-    // float c = 90;
-    // std::string s = "yamna";
-    // const std::type_info& ti = typeid(*a1);
-    // const std::type_info& ti2 = typeid(c);
-    // std::cout<<"the type of x is "<<ti.name()<<std::endl;
-    // std::cout<<"the type of s is "<<ti2.name()<<std::endl;
+    int x = 0;
+    float c = 90;
+    std::string s = "yamna";
+    const std::type_info& ti = typeid(a1);
+    const std::type_info& ti2 = typeid(c);
+    std::cout<<"the type of x is "<<ti.name()<<std::endl;
+    std::cout<<"the type of s is "<<ti2.name()<<std::endl;
+    std::cout <<"the type of x is " << typeid(x).name() << std::endl;
     return 0;
 }

@@ -33,7 +33,7 @@ int main()
 {
     std::shared_ptr<Project> pro {new Project{}};
     std::shared_ptr<Employee> emp{new Employee{}};
-
+    std::cout << pro.use_count() << " " << emp.use_count() << std::endl;
     pro->emp = emp;
     emp->pro = pro;
 

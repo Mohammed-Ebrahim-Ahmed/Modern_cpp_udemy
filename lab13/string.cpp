@@ -1,6 +1,8 @@
 #include<iostream>
 #include<cstring>
 #include<string>
+
+
 const char* Combine(const char* a, const char* b)
 {
     char* result = new char[strlen(a) + strlen(b) +1];
@@ -36,7 +38,7 @@ int main()
     std::cout<<fullname << std::endl;
     printf("%s", fullname.c_str());
 
-    std::uint16_t nice = 1999u;
+    // std::uint16_t nice = 1999u;
     using namespace std::string_literals;
     std::string mocking = "Uname mohsen"s;
     // std::string s = "hello";
@@ -61,7 +63,6 @@ int main()
     // std::cout<<result_string<<std::endl;;
     // s = "fawzy";
     // s.insert(2,"mohsen");
-
     // if(s != str)
     // {
 
@@ -71,7 +72,6 @@ int main()
     // //str.erase('a');
     // str.clear();
     // s.erase(0,2);
-
     // auto pos = str.find("er",0);
 
     // if(pos != std::string::npos)

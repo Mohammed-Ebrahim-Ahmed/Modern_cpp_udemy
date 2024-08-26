@@ -81,6 +81,15 @@ union Test
 
 };
 
+union Mytest{
+  Class1 class1;
+  Class2 class2;
+  int x;
+  std::string myString;
+  Mytest(){}
+  ~Mytest(){}
+};
+
 int main()
 {
     // Test t;
@@ -97,5 +106,18 @@ int main()
     //t.name.~basic_string();
     new(&t.name) std::string{"mohammed"};
     std::cout<<t.name<<std::endl;
+
+
+    Mytest t2;
+
+    new(&t2.class1) Class1{};
+
+    t2.class1.~Class1();
+
+    new(&t2.myString) std::string{"mohammed"};
+
+    std::cout << t2.myString << std::endl; 
+
+    t2.myString.~basic_string();
     return 0;
 }

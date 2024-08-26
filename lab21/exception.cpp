@@ -26,8 +26,8 @@ class Test {
         {
             std::cout<<"Test() Acquire resources"<<std::endl;
             pA.reset(new A);
-            throw std::runtime_error("Failed to continue");
-            //pInt.reset(new int);
+            pInt.reset(new int);
+            throw std::runtime_error("Failed to continue"); 
             //pStr = "my name is ahmed";
             //pArr.emplace_back(2);
             ptr = new int;
